@@ -28,7 +28,19 @@ void Accordion::spread(Deck deck)
 	}
 }
 
+void Accordion::scrollLeft()
+{
+	scroll--;
+	if(scroll < 0)
+		scroll = 0;
+}
 
+void Accordion::scrollRight()
+{
+	scroll++;
+	if(scroll > cards.size()-1)
+		scroll = cards.size()-1;
+}
 
 
 

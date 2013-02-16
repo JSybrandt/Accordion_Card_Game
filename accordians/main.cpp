@@ -35,7 +35,8 @@ int main()
 	Deck deck;
 	acc.spread(deck);
 	acc.sketch();
-	
+
+
 	return 0;
 }
 

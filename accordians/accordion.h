@@ -12,6 +12,8 @@ public:
 	Accordion();
 	void sketch();
 	void spread(Deck deck);
+	void scrollLeft();
+	void scrollRight();
 
 private:
 	int scroll;
