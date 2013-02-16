@@ -18,11 +18,11 @@ void Accordion::sketch()
 	{
 		if(i != scroll)
 		{
-			if((i-scroll)<=10 && (i-scroll)>=-10)
-				cards[i].sketch(36+3*(i-scroll),6);
+			if((i-scroll)<=4 && (i-scroll)>=-4)
+				cards[i].sketch(34+7*(i-scroll),6);
 		}
 		else
-			cards[i].sketch(36, 3);
+			cards[i].sketch(34, 3);
 	}
 }
 
