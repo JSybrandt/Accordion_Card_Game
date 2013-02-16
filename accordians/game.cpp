@@ -8,7 +8,7 @@ Game::Game()
 	keyPressed = false;
 	Deck deck;
 	deck.shuffle();
-	accordion.spread(deck);
+	board.spread(deck);
 }
 
 void Game::determineUserMove()
