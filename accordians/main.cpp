@@ -5,6 +5,7 @@
 #include "card.h"
 #include "deck.h"
 #include "accordion.h"
+#include "game.h"
 using namespace std;
 
 bool card_check(Card selected, Card one_over, Card three_over);
@@ -34,9 +35,15 @@ int main()
 	
 	Accordion acc;
 	Deck deck;
+	Game game;
 	acc.spread(deck);
 	acc.sketch();
 
+	while(true)
+	{
+		game.determineUserMove();
+
+	}
 
 	return 0;
 }
