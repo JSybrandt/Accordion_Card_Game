@@ -14,6 +14,7 @@
     <ProjectGuid>{B50FAA92-7D20-49EF-9E62-17666616D762}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>accordians</RootNamespace>
+    <ProjectName>accordions</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -75,11 +76,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="accordion.cpp" />
     <ClCompile Include="card.cpp" />
     <ClCompile Include="deck.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="accordion.h" />
     <ClInclude Include="card.h" />
     <ClInclude Include="deck.h" />
   </ItemGroup>

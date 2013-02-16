@@ -4,12 +4,13 @@
 #include <ctime>
 #include "card.h"
 #include "deck.h"
+#include "accordion.h"
 using namespace std;
 
 
 int main()
 {
-	Card c(ACE, HEARTS);
+/*	Card c(ACE, HEARTS);
 	while(next_suit(c.get_suit()) != END_OF_SUITS)
 	{
 		c.set_rank(ACE);
@@ -28,6 +29,13 @@ int main()
 		}
 		c.set_suit(next_suit(c.get_suit()));
 	}
+*/	
+	
+	Accordion acc;
+	Deck deck;
+	acc.spread(deck);
+	acc.sketch();
+	
 	return 0;
 }
 
