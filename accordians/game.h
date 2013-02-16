@@ -5,11 +5,12 @@
 class Game
 {
 public:
-	Game(){keyPressed = false;};
+	Game(){keyPressed = false; board.spread(deck);};
 	 void determineUserMove();
 	 void printGame();
 private:
 	bool keyPressed;
 	Accordion board;
+	Deck deck;
 };
 #endif
