@@ -10,6 +10,7 @@ class Accordion
 {
 public:
 	Accordion();
+	Accordion(Deck deck);
 	void sketch();
 	void spread(Deck deck);
 	void scrollLeft();

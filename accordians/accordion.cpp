@@ -6,6 +6,12 @@ Accordion::Accordion()
 	scroll = 0;
 }
 
+Accordion::Accordion(Deck deck)
+{
+	scroll = 0;
+	spread(deck);
+}
+
 void Accordion::sketch()
 {
 	for(int i=0; i<cards.size(); i++)

@@ -2,6 +2,15 @@
 #include"game.h"
 
 using namespace std;
+
+Game::Game()
+{
+	keyPressed = false;
+	Deck deck;
+	deck.shuffle();
+	accordion.spread(deck);
+}
+
 void Game::determineUserMove()
 {
 	 if(GetAsyncKeyState(VK_LEFT))
