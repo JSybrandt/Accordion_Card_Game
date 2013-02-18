@@ -3,12 +3,12 @@ using namespace std;
 
 Accordion::Accordion()
 {
-	scroll = 0;
+	cursor = 0;
 }
 
 Accordion::Accordion(Deck deck)
 {
-	scroll = 0;
+	cursor = 0;
 	spread(deck);
 }
 
@@ -16,10 +16,10 @@ void Accordion::sketch()
 {
 	for(int i=0; i<cards.size(); i++)
 	{
-		if(i != scroll)
+		if(i != cursor)
 		{
-			if((i-scroll)<=4 && (i-scroll)>=-4)
-				cards[i].sketch(34+7*(i-scroll),6);
+			if((i-cursor)<=4 && (i-cursor)>=-4)
+				cards[i].sketch(34+7*(i-cursor),6);
 		}
 		else
 			cards[i].sketch(34, 3);
@@ -36,19 +36,65 @@ void Accordion::spread(Deck deck)
 
 void Accordion::scrollLeft()
 {
-	scroll--;
-	if(scroll < 0)
-		scroll = 0;
+	cursor--;
+	if(cursor < 0)
+		cursor = 0;
 }
 
 void Accordion::scrollRight()
 {
-	scroll++;
-	if(scroll > cards.size()-1)
-		scroll = cards.size()-1;
+	cursor++;
+	if(cursor > cards.size()-1)
+		cursor = cards.size()-1;
 }
 
+bool Accordion::cardCheck(Card target)
+{
+	if(cards[cursor].get_rank() == target.get_rank())
+	{
+		return true;
+	}
+	else if(cards[cursor].get_suit() == target.get_suit())
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
 
+void Accordion::moveOne()
+{
+	if(cursor == 0)
+	{
+		throw "Invalid move.";
+	}
+	else if(cardCheck(cards[cursor-1]))
+	{
+		cards.erase(cards.begin()+(cursor-1));
+		cursor -= 1;
+	}
+	else
+	{
+		throw "Invalid move.";
+	}
+}
 
-
+void Accordion::moveThree()
+{
+	if(cursor < 3)
+	{
+		throw "Invalid move.";
+	}
+	else if(cardCheck(cards[cursor-3]))
+	{
+		cards.erase(cards.begin()+(cursor-3), cards.begin()+cursor);
+		cursor -= 3;
+	}
+	else
+	{
+		throw "Invalid move.";
+	}
+}
 

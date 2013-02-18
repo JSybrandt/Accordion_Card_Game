@@ -15,9 +15,12 @@ public:
 	void spread(Deck deck);
 	void scrollLeft();
 	void scrollRight();
+	bool cardCheck(Card target);
+	void moveOne();
+	void moveThree();
 
 private:
-	int scroll;
+	int cursor;
 	std::vector<Card> cards;
 
 };

@@ -31,6 +31,38 @@ void Game::determineUserMove()
 		 keyPressed = true;
 		 }
 	 }
+	 else if(GetAsyncKeyState('X'))
+	 {
+		 if(!keyPressed)
+		 {
+		 try
+		 {
+			 board.moveOne();
+		 }
+		 catch(string)
+		 {
+
+		 };
+		 printGame();
+		 keyPressed = true;
+		 }
+	 }
+	 else if(GetAsyncKeyState('Z'))
+	 {
+		 if(!keyPressed)
+		 {
+		 try
+		 {
+			 board.moveThree();
+		 }
+		 catch(string)
+		 {
+
+		 }
+		 printGame();
+		 keyPressed = true;
+		 }
+	 }
 	 else keyPressed = false;
 }
 void Game::printGame()

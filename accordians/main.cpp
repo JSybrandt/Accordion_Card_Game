@@ -48,20 +48,5 @@ int main()
 	return 0;
 }
 
-bool card_check(Card selected, Card possible_move)
-{
-	if(selected.get_rank() == possible_move.get_rank())
-	{
-		return true;
-	}
-	
-	if(selected.get_suit() == possible_move.get_suit())
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
+
 
