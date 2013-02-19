@@ -78,7 +78,7 @@ void Accordion::moveOne()
 {
 	if(cursor == 0)
 	{
-		throw "Invalid move.";
+		throw string("Invalid move.");
 	}
 	else if(cardCheck(cursor-1))
 	{
@@ -87,7 +87,7 @@ void Accordion::moveOne()
 	}
 	else
 	{
-		throw "Invalid move.";
+		throw string("Invalid move.");
 	}
 }
 
@@ -95,7 +95,7 @@ void Accordion::moveThree()
 {
 	if(cursor < 3)
 	{
-		throw "Invalid move.";
+		throw string("Invalid move.");
 	}
 	else if(cardCheck(cursor-3))
 	{
@@ -104,7 +104,7 @@ void Accordion::moveThree()
 	}
 	else
 	{
-		throw "Invalid move.";
+		throw string("Invalid move.");
 	}
 }
 
