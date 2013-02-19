@@ -15,7 +15,7 @@ public:
 	void spread(Deck deck);
 	void scrollLeft();
 	void scrollRight();
-	bool cardCheck(Card target);
+	bool cardCheck(int target);
 	void moveOne();
 	void moveThree();
 

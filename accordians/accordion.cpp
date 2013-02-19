@@ -16,13 +16,19 @@ void Accordion::sketch()
 {
 	for(int i=0; i<cards.size(); i++)
 	{
-		if(i != cursor)
+		if(i == cursor)
 		{
-			if((i-cursor)<=4 && (i-cursor)>=-4)
+			cards[i].sketch(34, 3);
+		}
+		else if((i-cursor)<=4 && (i-cursor)>=-4)
+		{
+			if(i == cursor-3 && cardCheck(cursor-3))
+				cards[i].sketch(34+7*(i-cursor),4);
+			else if(i == cursor-1 && cardCheck(cursor-1))
+				cards[i].sketch(34+7*(i-cursor),4);
+			else
 				cards[i].sketch(34+7*(i-cursor),6);
 		}
-		else
-			cards[i].sketch(34, 3);
 	}
 }
 
@@ -48,13 +54,13 @@ void Accordion::scrollRight()
 		cursor = cards.size()-1;
 }
 
-bool Accordion::cardCheck(Card target)
+bool Accordion::cardCheck(int target)
 {
-	if(cards[cursor].get_rank() == target.get_rank())
+	if(cards[cursor].get_rank() == cards[target].get_rank())
 	{
 		return true;
 	}
-	else if(cards[cursor].get_suit() == target.get_suit())
+	else if(cards[cursor].get_suit() == cards[target].get_suit())
 	{
 		return true;
 	}
@@ -70,7 +76,7 @@ void Accordion::moveOne()
 	{
 		throw "Invalid move.";
 	}
-	else if(cardCheck(cards[cursor-1]))
+	else if(cardCheck(cursor-1))
 	{
 		cards.erase(cards.begin()+(cursor-1));
 		cursor -= 1;
@@ -87,7 +93,7 @@ void Accordion::moveThree()
 	{
 		throw "Invalid move.";
 	}
-	else if(cardCheck(cards[cursor-3]))
+	else if(cardCheck(cursor-3))
 	{
 		cards.erase(cards.begin()+(cursor-3), cards.begin()+cursor);
 		cursor -= 3;
