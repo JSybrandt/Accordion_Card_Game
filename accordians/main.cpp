@@ -30,12 +30,10 @@ int main()
 		c.set_suit(next_suit(c.get_suit()));
 	}
 */	
-	
-	Accordion acc;
-	Deck deck;
+
+	srand(time(0));
 	Game game;
-	acc.spread(deck);
-	acc.sketch();
+	game.printGame();
 
 	while(true)
 	{
