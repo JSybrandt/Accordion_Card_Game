@@ -8,8 +8,6 @@
 #include "game.h"
 using namespace std;
 
-bool card_check(Card selected, Card one_over, Card three_over);
-
 int main()
 {
 /*	Card c(ACE, HEARTS);
