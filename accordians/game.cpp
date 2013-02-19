@@ -39,7 +39,7 @@ void Game::determineUserMove()
 		 {
 			 board.moveOne();
 		 }
-		 catch(string)
+		 catch(string x)
 		 {
 
 		 };
@@ -55,7 +55,7 @@ void Game::determineUserMove()
 		 {
 			 board.moveThree();
 		 }
-		 catch(string)
+		 catch(string x)
 		 {
 
 		 }

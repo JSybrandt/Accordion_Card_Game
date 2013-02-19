@@ -56,7 +56,11 @@ void Accordion::scrollRight()
 
 bool Accordion::cardCheck(int target)
 {
-	if(cards[cursor].get_rank() == cards[target].get_rank())
+	if(target < 0 || target >= cards.size())
+	{
+		return false;
+	}
+	else if(cards[cursor].get_rank() == cards[target].get_rank())
 	{
 		return true;
 	}
