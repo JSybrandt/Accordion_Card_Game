@@ -16,8 +16,16 @@ public:
 	void scrollLeft();
 	void scrollRight();
 	bool cardCheck(int target);
+	bool cardCheck(int start, int target);
 	void moveOne();
 	void moveThree();
+	int numCardsLeft();
+	bool validMovesLeft();
+	//Justin Sybrandt
+	//Added to print on lower UI
+	const Card* checkOne();
+	const Card* checkThree();
+	int getCardsRemaining();
 
 private:
 	int cursor;

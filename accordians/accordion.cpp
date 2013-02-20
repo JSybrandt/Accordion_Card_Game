@@ -23,13 +23,24 @@ void Accordion::sketch()
 		else if((i-cursor)<=4 && (i-cursor)>=-4)
 		{
 			if(i == cursor-3 && cardCheck(cursor-3))
+			{
+				gotoxy(33+7*(i-cursor),3);
+				cout<<"Press Z";
 				cards[i].sketch(34+7*(i-cursor),4);
+				
+			}
 			else if(i == cursor-1 && cardCheck(cursor-1))
+			{
+				gotoxy(33+7*(i-cursor),3);
+				cout<<"Press X";
 				cards[i].sketch(34+7*(i-cursor),4);
+			}
 			else
 				cards[i].sketch(34+7*(i-cursor),6);
 		}
 	}
+	if(cursor == cards.size()-1)
+		cout<<endl<<endl<<endl;//the cursor is raised to high if we are at the end
 }
 
 void Accordion::spread(Deck deck)
@@ -73,6 +84,25 @@ bool Accordion::cardCheck(int target)
 		return false;
 	}
 }
+bool Accordion::cardCheck(int start, int target)
+{
+	if(target < 0 || target >= cards.size())
+	{
+		return false;
+	}
+	else if(cards[start].get_rank() == cards[target].get_rank())
+	{
+		return true;
+	}
+	else if(cards[start].get_suit() == cards[target].get_suit())
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
 
 void Accordion::moveOne()
 {
@@ -107,4 +137,31 @@ void Accordion::moveThree()
 		throw string("Invalid move.");
 	}
 }
+int Accordion::getCardsRemaining()
+{
+	return cards.size();
+}
+const Card* Accordion:: checkOne()
+{
+   if(cursor >= 1 && cardCheck(cursor-1))
+		return &(cards.at(cursor-1));
+	else return NULL;
+}
+const Card* Accordion::checkThree()
+{
+	if(cursor >= 3 && cardCheck(cursor-3))
+		return &(cards.at(cursor-3));
+	else return NULL;
+}
 
+bool Accordion::validMovesLeft()
+{
+	for(int i = 1 ; i < cards.size();i++)
+	{
+		if(i>=3 && cardCheck(i,i-3))
+			return true;
+		if(cardCheck(i,i-1))
+			return true;
+	}
+	return false;
+}
