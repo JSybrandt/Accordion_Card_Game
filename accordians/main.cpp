@@ -30,7 +30,7 @@ int main()
 		c.set_suit(next_suit(c.get_suit()));
 	}
 */	
-
+	
 	srand(time(0));
 	Game game;
 	game.printGame();
@@ -43,6 +43,4 @@ int main()
 
 	return 0;
 }
-
-
 
