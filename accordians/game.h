@@ -11,12 +11,15 @@ public:
 	void incrementTurnCount();
 	void resetTurnCount();
 	void checkGameOver();
+
 private:
+	void printWinScreen();
+	void printLoseScreen();
 	int turnCount;
 	bool isPlaying;
 	void printUI();
-	void printWinScreen();
-	void printLoseScreen();
+	
+	
 
 	bool keyPressed;
 	Accordion board;

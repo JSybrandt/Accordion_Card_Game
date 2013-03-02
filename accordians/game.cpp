@@ -115,27 +115,74 @@ void Game::checkGameOver()
 {
 	if(board.getCardsRemaining() == 1)
 	{
-		void printWinScreen();
+		printWinScreen();
 		isPlaying = false;
 	
 	}
 	else if(!board.validMovesLeft())
 	{
-		void printLoseScreen();
+		printLoseScreen();
 		isPlaying = false;
 	}
 }
 void Game::printWinScreen()
 {
 	system("cls");
-	gotoxy(0,0);
-	cout<<"You Win"<<endl;
+	Card c(ACE, HEARTS);
+	int delx = -3;
+	int sign = 1;
+	for(int i = 0 ; i < 8; i++)
+	{
+		c.set_rank(ACE);
+		int x = 34;
+		int y = 3;
+		for (int j = 0 ; j < 13 ; j++)
+		{
+			c.sketch(x,y,true,false);
+
+			x += delx*2;
+			y+=2;
+
+			if(y>13|| x>70 || x<0)
+			{
+				delx += sign;
+				if(abs(delx) >= 3)
+				(( sign==1)? sign = -1: sign = 1);
+
+					y=3;
+					x = 34;
+			}
+				Sleep(20);
+			if(next_rank(c.get_rank()) == END_OF_RANKS) c.set_rank(ACE);
+			else
+			c.set_rank(next_rank(c.get_rank()));
+
+			
+		}
+		if(next_suit(c.get_suit()) == END_OF_SUITS) c.set_suit(SPADES);
+		else
+		c.set_suit(next_suit(c.get_suit()));
+	}
+	c.set_suit(SPADES);
+	c.set_rank(ACE);
+	c.sketch(34,5,true,true);
+	cout<<endl<<endl<<endl<<endl<<endl;
+	cout<<endl<<endl<<endl<<endl<<"                    !!!YOU WIN!!!"<<endl;
 	system("pause");
 }
 void Game::printLoseScreen()
 {
 	system("cls");
 	gotoxy(0,0);
-	cout<<"YOU LOSE"<<endl;
+	cout<<"                                                                             "<<endl
+		<<"              ===========       _-_     ==========        |                  "<<endl
+		<<"              |                /   \\         |            |                  "<<endl
+		<<"              |               |     |        |            |                  "<<endl
+		<<"              |======         |=====|        |            |                  "<<endl
+		<<"              |               |     |        |            |                  "<<endl
+		<<"              |               |     |        |            |                  "<<endl
+		<<"              |               |     |   ==========        =========          "<<endl
+		<<"                                                                             "<<endl
+		<<"                        GAME                     OVER                        "<<endl<<endl;
 	system("pause");
 }
