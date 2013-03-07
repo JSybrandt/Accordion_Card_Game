@@ -18,8 +18,11 @@ private:
 	int turnCount;
 	bool isPlaying;
 	void printUI();
-	
-	
+	void revertDeck();
+	void spreadNewDeck();
+	void respreadDeck();
+
+
 
 	bool keyPressed;
 	Accordion board;

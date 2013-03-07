@@ -20,6 +20,24 @@ void Game::resetTurnCount()
 {
 	turnCount = 0;
 }
+void Game::revertDeck()
+{
+	deck.top = deck.cards.size()-1;
+}
+void Game::spreadNewDeck()
+{
+	board.clear();
+	revertDeck();
+	deck.shuffle();
+	board.spread(deck);
+}
+void Game::respreadDeck()
+{
+	board.clear();
+	revertDeck();
+	board.spread(deck);
+}
+
 
 void Game::determineUserMove()
 {

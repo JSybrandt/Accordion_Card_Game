@@ -12,7 +12,7 @@ public:
 	Card draw_card();
 	void shuffle();
 	bool empty();
-	void revertDeck();
+	friend class Game;
 
 private:
 	std::vector<Card> cards;
