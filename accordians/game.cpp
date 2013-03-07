@@ -203,3 +203,29 @@ void Game::printLoseScreen()
 		<<"                        GAME                     OVER                        "<<endl<<endl;
 	system("pause");
 }
+
+bool Game::askUserContinue()
+{
+	system("CLS");
+	cout<<endl<<endl<<"PRESS R TO TRY AGAIN WITH THE SAME DECK"
+		<<endl<<"PRESS S TO PLAY AGAIN WITH A SHUFFELED DECK"
+		<<endl<<"PRESS Q TO QUIT"<<endl;
+	while(true)
+	{
+		if(GetAsyncKeyState('R'))
+		{
+			//respread deck!
+			return true;
+		}
+		if(GetAsyncKeyState('S'))
+		{
+			//reshuffel everything
+			return true;
+		}
+		if(GetAsyncKeyState('Q'))
+			return false;
+	}
+
+
+
+}
