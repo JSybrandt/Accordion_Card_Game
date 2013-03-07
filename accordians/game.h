@@ -23,5 +23,6 @@ private:
 
 	bool keyPressed;
 	Accordion board;
+	Deck deck;
 };
 #endif

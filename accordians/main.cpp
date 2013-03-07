@@ -18,7 +18,6 @@ int main()
 	while(true)
 	{
 		game.determineUserMove();
-	
 	}
 
 	return 0;

@@ -12,6 +12,7 @@ public:
 	Card draw_card();
 	void shuffle();
 	bool empty();
+	void revertDeck();
 
 private:
 	std::vector<Card> cards;

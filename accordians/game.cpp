@@ -7,7 +7,6 @@ using namespace std;
 Game::Game()
 {
 	keyPressed = false;
-	Deck deck;
 	deck.shuffle();
 	board.spread(deck);
 	turnCount = 0;
