@@ -21,7 +21,7 @@ int main()
 		{
 			game.determineUserMove();
 		}
-	}while(game.askUserContinue());
+	} while(game.askUserContinue());
 
 
 	return 0;

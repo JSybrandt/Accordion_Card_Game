@@ -30,12 +30,16 @@ void Game::spreadNewDeck()
 	revertDeck();
 	deck.shuffle();
 	board.spread(deck);
+	turnCount = 0;
+	isPlaying = true;
 }
 void Game::respreadDeck()
 {
 	board.clear();
 	revertDeck();
 	board.spread(deck);
+	turnCount = 0;
+	isPlaying = true;
 }
 
 
@@ -214,12 +218,12 @@ bool Game::askUserContinue()
 	{
 		if(GetAsyncKeyState('R'))
 		{
-			//respread deck!
+			respreadDeck();
 			return true;
 		}
 		if(GetAsyncKeyState('S'))
 		{
-			//reshuffel everything
+			spreadNewDeck();
 			return true;
 		}
 		if(GetAsyncKeyState('Q'))
