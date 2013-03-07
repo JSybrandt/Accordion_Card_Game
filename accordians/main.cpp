@@ -14,10 +14,14 @@ int main()
 	
 	srand(time(0));
 	Game game;
-	game.printGame();
-	while(true)
+	
+	while(game.askUserContinue())
 	{
-		game.determineUserMove();
+		game.printGame();
+		while(game.checkActiveGame())
+		{
+			game.determineUserMove();
+		}
 	}
 
 	return 0;

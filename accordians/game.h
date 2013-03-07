@@ -11,16 +11,17 @@ public:
 	void incrementTurnCount();
 	void resetTurnCount();
 	void checkGameOver();
+	bool checkActiveGame() {return isPlaying;}
+	bool askUserContinue();
 
 private:
 	void printWinScreen();
 	void printLoseScreen();
-	int turnCount;
-	bool isPlaying;
 	void printUI();
 	
 	
-
+	int turnCount;
+	bool isPlaying;
 	bool keyPressed;
 	Accordion board;
 	Deck deck;
