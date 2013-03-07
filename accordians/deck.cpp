@@ -40,8 +40,3 @@ bool Deck::empty()
 {
 	return top < 0;
 }
-
-void Deck::revertDeck()
-{
-	top = cards.size()-1;
-}

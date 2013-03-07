@@ -18,6 +18,13 @@ private:
 	void printWinScreen();
 	void printLoseScreen();
 	void printUI();
+	void revertDeck();
+	void spreadNewDeck();
+	void respreadDeck();
+
+
+
+
 	
 	
 	int turnCount;

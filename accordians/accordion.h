@@ -26,6 +26,7 @@ public:
 	const Card* checkOne();
 	const Card* checkThree();
 	int getCardsRemaining();
+	void clear() {cards.clear();}
 
 private:
 	int cursor;
