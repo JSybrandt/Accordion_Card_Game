@@ -10,6 +10,7 @@ Game::Game()
 	deck.shuffle();
 	board.spread(deck);
 	turnCount = 0;
+	availableUndos = 3;
 	isPlaying = true;
 }
 void Game::incrementTurnCount()
@@ -31,6 +32,7 @@ void Game::spreadNewDeck()
 	deck.shuffle();
 	board.spread(deck);
 	turnCount = 0;
+	availableUndos = 3;
 	isPlaying = true;
 }
 void Game::respreadDeck()
@@ -39,6 +41,7 @@ void Game::respreadDeck()
 	revertDeck();
 	board.spread(deck);
 	turnCount = 0;
+	availableUndos = 3;
 	isPlaying = true;
 }
 
@@ -83,12 +86,25 @@ void Game::determineUserMove()
 			 if(!keyPressed)
 			 {
 				if(board.checkThree() != NULL)
-					 {
-						board.moveThree();
-						turnCount++;
-						printGame();
-						checkGameOver();
-					 }
+				{
+					board.moveThree();
+					turnCount++;
+					printGame();
+					checkGameOver();
+				}
+			 keyPressed = true;
+			 }
+		 }
+		 else if(GetAsyncKeyState('U'))
+		 {
+			 if(!keyPressed)
+			 {
+				if(board.canUndo() && availableUndos>0)
+				{
+					board.undo();
+					availableUndos--;
+					printGame();
+				}
 			 keyPressed = true;
 			 }
 		 }
@@ -100,12 +116,13 @@ void Game:: printUI()
 {
 	stringstream status;
 	status<<"Cards Remaining: "<<	board.getCardsRemaining()<<"|";
-	if(board.checkOne() != NULL)
-		status<<"X will merge to "<<*board.checkOne()<<"|";
-	if(board.checkThree() != NULL)
-		status<<"Z will merge to "<<*board.checkThree()<<"|";
+//	if(board.checkOne() != NULL)
+//		status<<"X will merge to "<<*board.checkOne()<<"|";
+//	if(board.checkThree() != NULL)
+//		status<<"Z will merge to "<<*board.checkThree()<<"|";
 	status<<"Turn Count: "<<turnCount<<"|";
-
+	if(availableUndos>0)
+		status<<"Press U to undo ("<<availableUndos<<" left)|";
 
 	//printing
 	cout<<endl<<"-";

@@ -164,9 +164,10 @@ bool Accordion::validMovesLeft()
 void Accordion::undo()
 {
 	vector<Card>::iterator iter = cards.begin() + trashIndex;
-	for(int i=0; canUndo(); i++)
+	for(int i=0; i<trash.size(); i++)
 	{
-		cards.insert(iter, trash.at(i));
-		trash.pop_back();
+		cards.insert(iter, trash[i]);
+		cursor++;
 	}
+	trash.clear();
 }
