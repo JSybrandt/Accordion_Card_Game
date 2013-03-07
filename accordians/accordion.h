@@ -27,10 +27,15 @@ public:
 	const Card* checkThree();
 	int getCardsRemaining();
 	void clear() {cards.clear();}
+	friend class Game;
+	void undo();
+	bool canUndo() {return !trash.empty();}
 
 private:
 	int cursor;
 	std::vector<Card> cards;
+	std::vector<Card> trash;
+	int trashIndex;
 
 };
 

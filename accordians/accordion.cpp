@@ -106,35 +106,30 @@ bool Accordion::cardCheck(int start, int target)
 
 void Accordion::moveOne()
 {
-	if(cursor == 0)
+	if(cardCheck(cursor-1))
 	{
-		throw string("Invalid move.");
-	}
-	else if(cardCheck(cursor-1))
-	{
+		trashIndex = cursor-1;
+		trash.clear();
+		trash.push_back(cards[cursor-1]);
 		cards.erase(cards.begin()+(cursor-1));
 		cursor -= 1;
-	}
-	else
-	{
-		throw string("Invalid move.");
 	}
 }
 
 void Accordion::moveThree()
 {
-	if(cursor < 3)
+	if(cardCheck(cursor-3))
 	{
-		throw string("Invalid move.");
-	}
-	else if(cardCheck(cursor-3))
-	{
-		cards.erase(cards.begin()+(cursor-3), cards.begin()+cursor);
-		cursor -= 3;
-	}
-	else
-	{
-		throw string("Invalid move.");
+		trashIndex = cursor-3;
+		trash.clear();
+		for(int i=0;i<3;i++)
+		{
+			trash.push_back(cards[cursor-1]);
+			cards.erase(cards.begin()+(cursor-1));
+			cursor -= 1;
+		}
+		//cards.erase(cards.begin()+(cursor-3), cards.begin()+cursor);
+		//cursor -= 3;
 	}
 }
 int Accordion::getCardsRemaining()
@@ -164,4 +159,14 @@ bool Accordion::validMovesLeft()
 			return true;
 	}
 	return false;
+}
+
+void Accordion::undo()
+{
+	vector<Card>::iterator iter = cards.begin() + trashIndex;
+	for(int i=0; canUndo(); i++)
+	{
+		cards.insert(iter, trash.at(i));
+		trash.pop_back();
+	}
 }

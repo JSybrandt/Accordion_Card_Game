@@ -42,7 +42,6 @@ void Game::respreadDeck()
 	isPlaying = true;
 }
 
-
 void Game::determineUserMove()
 {
 	if(isPlaying)
@@ -96,6 +95,7 @@ void Game::determineUserMove()
 		 else keyPressed = false;
 	}
 }
+
 void Game:: printUI()
 {
 	stringstream status;
@@ -229,7 +229,4 @@ bool Game::askUserContinue()
 		if(GetAsyncKeyState('Q'))
 			return false;
 	}
-
-
-
 }

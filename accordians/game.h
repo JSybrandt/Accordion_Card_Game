@@ -22,15 +22,11 @@ private:
 	void spreadNewDeck();
 	void respreadDeck();
 
-
-
-
-	
-	
 	int turnCount;
 	bool isPlaying;
 	bool keyPressed;
 	Accordion board;
 	Deck deck;
+	int availableUndos;
 };
 #endif
