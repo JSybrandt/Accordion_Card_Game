@@ -167,7 +167,8 @@ void Accordion::undo()
 	for(int i=0; i<trash.size(); i++)
 	{
 		cards.insert(iter, trash[i]);
-		cursor++;
+		if(cursor >= trashIndex)
+			cursor++;
 	}
 	trash.clear();
 }
