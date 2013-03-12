@@ -166,6 +166,7 @@ void Accordion::undo()
 	vector<Card>::iterator iter = cards.begin() + trashIndex;
 	for(int i=0; i<trash.size(); i++)
 	{
+		iter = cards.begin() + trashIndex; //keeps iterator valid
 		cards.insert(iter, trash[i]);
 		if(cursor >= trashIndex)
 			cursor++;
