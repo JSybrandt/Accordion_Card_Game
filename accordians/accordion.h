@@ -21,8 +21,6 @@ public:
 	void moveThree();
 	int numCardsLeft();
 	bool validMovesLeft();
-	//Justin Sybrandt
-	//Added to print on lower UI
 	const Card* checkOne();
 	const Card* checkThree();
 	int getCardsRemaining();
