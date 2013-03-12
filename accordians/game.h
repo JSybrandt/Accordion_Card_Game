@@ -21,7 +21,11 @@ private:
 	void revertDeck();
 	void spreadNewDeck();
 	void respreadDeck();
-
+	void pressLeft();
+	void pressRight();
+	void pressX();
+	void pressZ();
+	void pressU();
 	int turnCount;
 	bool isPlaying;
 	bool keyPressed;

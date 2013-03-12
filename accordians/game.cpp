@@ -50,81 +50,86 @@ void Game::determineUserMove()
 	if(isPlaying)
 	{
 		 if(GetAsyncKeyState(VK_LEFT))
-		 {
-			 if(!keyPressed)
-			 {
-			 board.scrollLeft();
-			 printGame();
-			 keyPressed = true;
-			 }
-		 }
+			 pressLeft();
 		 else if(GetAsyncKeyState(VK_RIGHT))
-		 {
-			 if(!keyPressed)
-			 {
-			 board.scrollRight();
-			 printGame();
-			 keyPressed = true;
-			 }
-		 }
+			 pressRight();
 		 else if(GetAsyncKeyState('X'))
-		 {
-			 if(!keyPressed)
-			 {
-				 if(board.checkOne() != NULL)
-				 {
-					board.moveOne();
-					turnCount++;
-					printGame();
-					checkGameOver();
-				 }
-			 keyPressed = true;
-			 }
-		 }
+			pressX();
 		 else if(GetAsyncKeyState('Z'))
-		 {
-			 if(!keyPressed)
-			 {
-				if(board.checkThree() != NULL)
-				{
-					board.moveThree();
-					turnCount++;
-					printGame();
-					checkGameOver();
-				}
-			 keyPressed = true;
-			 }
-		 }
+			pressZ();
 		 else if(GetAsyncKeyState('U'))
-		 {
-			 if(!keyPressed)
-			 {
-				if(board.canUndo() && availableUndos>0)
-				{
-					board.undo();
-					availableUndos--;
-					printGame();
-				}
-			 keyPressed = true;
-			 }
-		 }
+			pressU();
 		 else keyPressed = false;
 	}
+}
+void Game::pressLeft()
+{
+	if(!keyPressed)
+	{
+		board.scrollLeft();
+		printGame();
+	}
+	keyPressed = true;
+}
+void Game::pressRight()
+{
+	if(!keyPressed)
+	{
+		 board.scrollRight();
+		 printGame();
+	}
+	keyPressed = true;
+}
+void Game::pressX()
+{
+	if(!keyPressed)
+	{
+		if(board.checkOne() != NULL)
+			{
+			board.moveOne();
+			turnCount++;
+			printGame();
+			checkGameOver();
+			}
+	}
+	keyPressed = true;
+}
+void Game::pressZ()
+{
+	if(!keyPressed)
+	{
+		if(board.checkThree() != NULL)
+			{
+				board.moveThree();
+				turnCount++;
+				printGame();
+				checkGameOver();
+			}
+	}
+	keyPressed = true;
+}
+void Game::pressU()
+{
+	if(!keyPressed)
+	{
+		if(board.canUndo() && availableUndos>0)
+			{
+				board.undo();
+				availableUndos--;
+				printGame();
+			}
+	}
+	keyPressed = true;
 }
 
 void Game:: printUI()
 {
 	stringstream status;
 	status<<"Cards Remaining: "<<	board.getCardsRemaining()<<"|";
-//	if(board.checkOne() != NULL)
-//		status<<"X will merge to "<<*board.checkOne()<<"|";
-//	if(board.checkThree() != NULL)
-//		status<<"Z will merge to "<<*board.checkThree()<<"|";
 	status<<"Turn Count: "<<turnCount<<"|";
 	if(availableUndos>0)
 		status<<"Press U to undo ("<<availableUndos<<" left)|";
 
-	//printing
 	cout<<endl<<"-";
 	string toPrint = status.str();
 	toPrint = toPrint.substr(0,toPrint.size()-1);
