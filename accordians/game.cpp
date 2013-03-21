@@ -1,30 +1,51 @@
 #include<windows.h>
 #include"game.h"
+#include <ctime>
 #include <sstream>
 
 using namespace std;
-
+//Pre-condition:
+//Postcondition:
 Game::Game()
 {
 	keyPressed = false;
 	deck.shuffle();
 	board.spread(deck);
 	turnCount = 0;
+	seed = 0;
 	availableUndos = 3;
 	isPlaying = true;
 }
+//Pre-condition:
+//Postcondition:
+void Game::setSeed(int seed2)
+{
+	seed = seed2;
+}
+
+int Game::getSeed()
+{
+	return seed;
+}
+
 void Game::incrementTurnCount()
 {
 	turnCount++;
 }
+//Pre-condition:
+//Postcondition:
 void Game::resetTurnCount()
 {
 	turnCount = 0;
 }
+//Pre-condition:
+//Postcondition:
 void Game::revertDeck()
 {
 	deck.top = deck.cards.size()-1;
 }
+//Pre-condition:
+//Postcondition:
 void Game::spreadNewDeck()
 {
 	board.clear();
@@ -35,6 +56,8 @@ void Game::spreadNewDeck()
 	availableUndos = 3;
 	isPlaying = true;
 }
+//Pre-condition:
+//Postcondition:
 void Game::respreadDeck()
 {
 	board.clear();
@@ -44,7 +67,18 @@ void Game::respreadDeck()
 	availableUndos = 3;
 	isPlaying = true;
 }
-
+void Game::reseedDeck(int n)
+{	
+	srand(n);
+	board.clear();
+	revertDeck();
+	board.spread(deck);
+	turnCount = 0;
+	availableUndos = 3;
+	isPlaying = true;
+}
+//Pre-condition:
+//Postcondition:
 void Game::determineUserMove()
 {
 	if(isPlaying)
@@ -62,6 +96,8 @@ void Game::determineUserMove()
 		 else keyPressed = false;
 	}
 }
+//Pre-condition:
+//Postcondition:
 void Game::pressLeft()
 {
 	if(!keyPressed)
@@ -71,6 +107,8 @@ void Game::pressLeft()
 	}
 	keyPressed = true;
 }
+//Pre-condition:
+//Postcondition:
 void Game::pressRight()
 {
 	if(!keyPressed)
@@ -80,6 +118,8 @@ void Game::pressRight()
 	}
 	keyPressed = true;
 }
+//Pre-condition:
+//Postcondition:
 void Game::pressX()
 {
 	if(!keyPressed)
@@ -94,6 +134,8 @@ void Game::pressX()
 	}
 	keyPressed = true;
 }
+//Pre-condition:
+//Postcondition:
 void Game::pressZ()
 {
 	if(!keyPressed)
@@ -108,6 +150,8 @@ void Game::pressZ()
 	}
 	keyPressed = true;
 }
+//Pre-condition:
+//Postcondition:
 void Game::pressU()
 {
 	if(!keyPressed)
@@ -146,6 +190,35 @@ void Game:: printUI()
 	cout<<"--"<<endl;
 
 }
+//Pre-condition:
+//Postcondition:
+void Game::startScreen()
+{
+	srand(time(0));
+	int data_key = 0;
+	char answer;
+	cout << "Would you like to select a specific seed (Y/N) :";
+	cin >> answer;
+	if(answer =='y')
+	{
+		cout << "ENTER SEED NUMBER: ";
+		cin >> data_key;
+	}
+	else
+	{
+		data_key = rand() % 1000;
+	}
+	setSeed(data_key);
+		
+	cout << endl;
+	
+	srand(data_key);
+	cout << "This Games data key is: "<<data_key<< endl;
+	system("PAUSE");
+	
+}
+//Pre-condition:
+//Postcondition:
 void Game::printGame()
 {
 	system("cls");
@@ -153,7 +226,8 @@ void Game::printGame()
 	printUI();
 ;
 }
-
+//Pre-condition:
+//Postcondition:
 void Game::checkGameOver()
 {
 	if(board.getCardsRemaining() == 1)
@@ -168,6 +242,8 @@ void Game::checkGameOver()
 		isPlaying = false;
 	}
 }
+//Pre-condition:
+//Postcondition:
 void Game::printWinScreen()
 {
 	system("cls");
@@ -213,6 +289,8 @@ void Game::printWinScreen()
 	cout<<endl<<endl<<endl<<endl<<"                    !!!YOU WIN!!!"<<endl;
 	system("pause");
 }
+//Pre-condition:
+//Postcondition:
 void Game::printLoseScreen()
 {
 	system("cls");
@@ -229,12 +307,17 @@ void Game::printLoseScreen()
 		<<"                        GAME                     OVER                        "<<endl<<endl;
 	system("pause");
 }
-
+//Pre-condition:
+//Postcondition:
 bool Game::askUserContinue()
 {
+	int data_key = 0;
+	data_key = getSeed();
 	system("CLS");
-	cout<<endl<<endl<<"PRESS R TO TRY AGAIN WITH THE SAME DECK"
+	cout<<endl<<endl<<"THE GAME KEY IS "<< data_key
+		<<endl<<"PRESS R TO TRY AGAIN WITH THE SAME DECK"
 		<<endl<<"PRESS S TO PLAY AGAIN WITH A SHUFFELED DECK"
+		<<endl<<"PRESS A TO PLAY AGAIN WITH A NEW SEED"
 		<<endl<<"PRESS Q TO QUIT"<<endl;
 	while(true)
 	{
@@ -246,6 +329,16 @@ bool Game::askUserContinue()
 		if(GetAsyncKeyState('S'))
 		{
 			spreadNewDeck();
+			return true;
+		}
+		if(GetAsyncKeyState('A'))
+		{
+			system("CLS");
+			int n=0;
+			cout<<endl<<endl<<"THE GAME KEY IS "<< data_key
+			<<endl<< "ENTER SEED NUMBER: ";
+			cin >> n;
+			reseedDeck(n);
 			return true;
 		}
 		if(GetAsyncKeyState('Q'))

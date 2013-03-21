@@ -13,6 +13,9 @@ public:
 	void checkGameOver();
 	bool checkActiveGame() {return isPlaying;}
 	bool askUserContinue();
+	void setSeed(int);
+	int getSeed();
+	void startScreen();
 
 private:
 	void printWinScreen();
@@ -26,11 +29,15 @@ private:
 	void pressX();
 	void pressZ();
 	void pressU();
+	void pressY();
+	void pressN();
 	int turnCount;
 	bool isPlaying;
 	bool keyPressed;
 	Accordion board;
 	Deck deck;
 	int availableUndos;
+	void Game::reseedDeck(int n);
+	int seed;
 };
 #endif
